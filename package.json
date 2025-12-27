@@ -1,15 +1,34 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "main": "index.ts",
-  "scripts": {
-    "dev": "node src/index.ts"
-  },
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "@types/node": "^25.0.3",
-    "typescript": "^5.9.3"
-  }
+    "name": "backend",
+    "version": "1.0.0",
+    "main": "index.ts",
+    "scripts": {
+        "dev": "node src/index.ts",
+        "format:fix": "prettier . --write",
+        "format:check": "prettier . --check",
+        "lint:check": "eslint . ",
+        "lint:fix": "eslint . --fix",
+        "prepare": "husky"
+    },
+    "author": "",
+    "license": "ISC",
+    "description": "",
+    "devDependencies": {
+        "@eslint/js": "^9.39.2",
+        "@types/node": "^25.0.3",
+        "eslint": "^9.39.2",
+        "lint-staged": "^16.2.7",
+        "prettier": "3.7.4",
+        "typescript": "^5.9.3",
+        "typescript-eslint": "^8.50.1"
+    },
+    "lint-staged": {
+        "*.ts": [
+            "npm run format:fix",
+            "npm run lint:fix"
+        ]
+    },
+    "dependencies": {
+        "husky": "^9.1.7"
+    }
 }
