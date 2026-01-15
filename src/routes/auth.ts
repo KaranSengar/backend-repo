@@ -50,14 +50,14 @@ router.get(
   "/self",
   authentiction,
   (req: AuthRequest, res: Response, next: NextFunction) =>
-    authController.self(req as AuthRequest, res, next),
+    authController.self(req, res, next),
 );
 
 router.post(
   "/refresh",
   vallidateRefreshtoken,
   (req: AuthRequest, res: Response, next: NextFunction) =>
-    authController.refresh(req as AuthRequest, res, next),
+    authController.refresh(req, res, next),
 );
 
 router.post(

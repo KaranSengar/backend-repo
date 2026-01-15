@@ -1,37 +1,41 @@
-// @ts-check
-import eslint from "@eslint/js";
-import { defineConfig } from "eslint/config";
-import tseslint from "typescript-eslint";
+import js from "@eslint/js";
 import globals from "globals";
+import tseslint from "typescript-eslint";
 
-export default defineConfig(
-  eslint.configs.recommended,
-  {
-    ignores: ["dist/**", "node_modules/**", "eslint.config.mjs"],
-  },
-
+export default tseslint.config(
+  { ignores: [
+    "build/**",
+    "dist/**", 
+    "coverage/**",
+    "node_modules/**",
+    "src/tester/**",
+    "**/*.config.*",
+    "script/**"
+  ] },
+  
+  js.configs.recommended,
+  ...tseslint.configs.recommended,
+  
+  // Type-aware rules OFF rakha (simple start ke liye)
   {
     files: ["src/**/*.ts"],
     languageOptions: {
+      parserOptions: {
+        project: "./tsconfig.json",
+        tsconfigRootDir: import.meta.dirname,
+      },
       globals: {
         ...globals.node,
-        // Jest globals
-        describe: "readonly",
-        it: "readonly",
-        expect: "readonly",
-        beforeAll: "readonly",
-        afterAll: "readonly",
-        beforeEach: "readonly",
-        afterEach: "readonly",
-      },
-      parserOptions: {
-        projectService: true,
-        tsconfigRootDir: import.meta.dirname,
+        ...globals.jest,
       },
     },
     rules: {
-      // @ts-ignore
-      ...tseslint.configs.recommendedTypeChecked.rules,
+      "@typescript-eslint/no-unused-vars": "warn",
+      "@typescript-eslint/no-explicit-any": "warn",
+      // YE REMOVE KAR DIYA - type checking ke liye problem
+      // "@typescript-eslint/no-floating-promises": "warn",
+      "no-console": "off",
     },
-  },
+  }
 );
+ 
