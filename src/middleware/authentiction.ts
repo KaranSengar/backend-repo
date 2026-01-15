@@ -7,7 +7,7 @@ import { AuthCookie } from "../types";
 
 //console.log("JWT middleware file loaded",appConfig.JWKS_URI); // ✅ check if file loaded
 
- export default expressjwt({
+export default expressjwt({
   secret: jwksClient.expressJwtSecret({
     jwksUri: appConfig.JWKS_URI,
     cache: true,
@@ -17,7 +17,7 @@ import { AuthCookie } from "../types";
   algorithms: ["RS256"],
 
   getToken(req: Request) {
-   // console.log("getToken called"); // ✅ check if middleware is running
+    // console.log("getToken called"); // ✅ check if middleware is running
 
     // Bearer ghdydtkjfdiysrtkdj
     const authHeader = req.headers.authorization;
@@ -28,8 +28,7 @@ import { AuthCookie } from "../types";
       }
     }
 
-  
     const { accessToken } = req.cookies as AuthCookie;
-    return accessToken
+    return accessToken;
   },
 });

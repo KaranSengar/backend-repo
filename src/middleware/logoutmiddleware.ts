@@ -9,8 +9,7 @@ export default expressjwt({
   secret: appConfig.REFRESH_TOKEN_SECRET,
   algorithms: ["HS256"],
   getToken(req: Request) {
-    const {refreshToken}= req.cookies as AuthCookie;
-    return refreshToken
+    const { refreshToken } = req.cookies as AuthCookie;
+    return refreshToken;
   },
-
-})
+});

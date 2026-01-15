@@ -10,6 +10,6 @@ declare namespace NodeJS {
     PORT: string;
     JWKS_URI: string;
     REFRESH_TOKEN_SECRET: string;
-    PRIVATE_KEY:string
+    PRIVATE_KEY: string;
   }
 }

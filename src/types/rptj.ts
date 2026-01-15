@@ -1,6 +1,6 @@
 declare module "rsa-pem-to-jwk" {
   export interface RsaPemToJwkOptions {
-    use?: string;   // "sig"
+    use?: string; // "sig"
     kid?: string;
     alg?: string;
   }
@@ -17,7 +17,7 @@ declare module "rsa-pem-to-jwk" {
   function rsaPemToJwk(
     pem: string,
     options?: RsaPemToJwkOptions,
-    type?: "public" | "private"
+    type?: "public" | "private",
   ): Jwk;
 
   export default rsaPemToJwk;

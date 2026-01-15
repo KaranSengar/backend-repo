@@ -25,7 +25,7 @@ describe("PATCH /users/:id", () => {
     await connection.getRepository(Tenant).save({
       id: 1,
       name: "Test Tenant",
-      address:"hs"
+      address: "hs",
     });
   });
 

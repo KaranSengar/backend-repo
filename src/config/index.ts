@@ -11,7 +11,7 @@ const DB_NAME = process.env.DB_NAME;
 const DB_PORT = process.env.PORT || 3000;
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET;
 const JWKS_URI = process.env.JWKS_URI;
-const PRIVATE_KEY=process.env.PRIVATE_KEY
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
 export const appConfig = {
   NODE_ENV,
   DB_HOST,
@@ -22,7 +22,7 @@ export const appConfig = {
   PORT,
   JWKS_URI,
   REFRESH_TOKEN_SECRET,
-  PRIVATE_KEY
+  PRIVATE_KEY,
 };
 
 //console.log(appConfig); // check if everything is loaded correctly
