@@ -47,7 +47,7 @@ app.use((err: any, req: Request, res: Response, next: NextFunction) => {
   // 🔐 JWT / Auth error
   if (err.name === "UnauthorizedError") {
     logger.warn(err.message);
-
+    console.log(err.message);
     return res.status(401).json({
       errors: [
         {
