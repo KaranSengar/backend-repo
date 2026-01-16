@@ -14,7 +14,7 @@ export class UserController {
   constructor(private userService: Userservice) {}
 
   async create(req: CreateUserRequest, res: Response, next: NextFunction) {
-    console.log(req.body, "body chech tha");
+    //console.log(req.body, "body chech tha");
     // Validation
     const result = validationResult(req);
     if (!result.isEmpty()) {
