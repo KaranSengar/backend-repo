@@ -1,5 +1,5 @@
 // utils
-import "../utils/utils";
+import "../utilss/utils";
 
 // app & server
 import "../app";
