@@ -17,9 +17,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run eslint
-        run: npm run lint:fix
+        run: npm run lint:check
       - name: Test and coverage
-        run: npm run test
+        run: npm run test1
         env:
           DB_HOST: ${{ secrets.TEST_DB_HOST }}
           DB_PORT: ${{ secrets.TEST_DB_PORT }}
