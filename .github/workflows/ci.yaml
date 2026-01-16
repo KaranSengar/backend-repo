@@ -13,12 +13,10 @@ jobs:
     name: Build the project
     runs-on: ubuntu-latest
     steps:
-      # ✅ Checkout full history for proper cache handling
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # ✅ Setup Node with npm cache
       - uses: actions/setup-node@v4
         with:
           node-version: 20
