@@ -3,19 +3,21 @@ import globals from "globals";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: [
-    "build/**",
-    "dist/**", 
-    "coverage/**",
-    "node_modules/**",
-    "src/tester/**",
-    "**/*.config.*",
-    "script/**"
-  ] },
-  
+  {
+    ignores: [
+      "build/**",
+      "dist/**",
+      "coverage/**",
+      "node_modules/**",
+      "src/tester/**",
+      "**/*.config.*",
+      "script/**",
+    ],
+  },
+
   js.configs.recommended,
   ...tseslint.configs.recommended,
-  
+
   // Type-aware rules OFF rakha (simple start ke liye)
   {
     files: ["src/**/*.ts"],
@@ -36,6 +38,5 @@ export default tseslint.config(
       // "@typescript-eslint/no-floating-promises": "warn",
       "no-console": "off",
     },
-  }
+  },
 );
- 

@@ -87,7 +87,7 @@ export class Userservice {
 
       return result;
     } catch (err) {
-      if ((err).status) throw err; // pass custom errors
+      if (err.status) throw err; // pass custom errors
       throw createHttpError(500, "Failed to update the user in the database");
     }
   }

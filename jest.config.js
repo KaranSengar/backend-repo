@@ -1,8 +1,7 @@
- 
 module.exports = {
   preset: "ts-jest",
   testEnvironment: "node",
-  colletCoverage: true,
+  collectCoverage: true,
   coverageProvider: "v8",
   collectCoverageFrom: ["src/**/*.ts", "!tests/**", "!**/node_modules/**"],
   roots: ["<rootDir>/src"],
