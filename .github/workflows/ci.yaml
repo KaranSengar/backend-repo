@@ -13,8 +13,18 @@ jobs:
     name: Build the project
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      # ✅ Checkout full history for proper cache handling
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
+      # ✅ Setup Node with npm cache
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "npm"
+
+      # ✅ Install dependencies via lock file
       - name: Install dependencies
         run: npm ci
 
@@ -52,7 +62,9 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
