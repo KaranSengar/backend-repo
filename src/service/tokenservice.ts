@@ -10,20 +10,13 @@ import { Repository } from "typeorm";
 export class TokenService {
   constructor(private refreshTokenRepository: Repository<RefreshToken>) {}
   generateAccessToken(payload: JwtPayload) {
-    // let privateKey: Buffer;
-    let privateKey: string;
-    if (!appConfig.PRIVATE_KEY) {
-      const err = createHttpError(500, "error while reading in private key");
-      throw err;
-    }
+    let privateKey: Buffer;
+
     try {
-      privateKey = appConfig.PRIVATE_KEY!;
-      /*
-      ham phle file se read kr to ye dikkat thi ki hame build ke andr copy krni padh rhi thi us situation ko handel krne k liye hamne socha ise env me rakha jaye baha se read kre
       privateKey = fs.readFileSync(
         path.join(__dirname, "../certs/private.pem"), // ✅ file ka exact path
-      );*/
-      console.log(privateKey);
+      );
+      console.log(privateKey, "yahi hai private key");
     } catch (err) {
       const error = createHttpError(500, "Error while reading private key");
       throw error;
