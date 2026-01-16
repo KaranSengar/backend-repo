@@ -13,24 +13,11 @@ jobs:
     name: Build the project
     runs-on: ubuntu-latest
     steps:
-      # ✅ Checkout full history for proper cache handling
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      # ✅ Setup Node with npm cache
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: "npm"
-
-      # ✅ Install dependencies via lock file
+      - uses: actions/checkout@v3
       - name: Install dependencies
         run: npm ci
-
       - name: Run eslint
         run: npm run lint:check
-
       - name: Test and coverage
         run: npm run test1
         env:
@@ -42,12 +29,10 @@ jobs:
           REFRESH_TOKEN_SECRET: ${{ secrets.REFRESH_TOKEN_SECRET }}
           JWKS_URI: ${{ secrets.JWKS_URI }}
           PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-
       - name: Build TypeScript
         run: npm run build
-
       - name: SonarCloud Scan
-        uses: SonarSource/sonarqube-scan-action@v5.0.0
+        uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
@@ -62,18 +47,13 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
+        uses: actions/checkout@v3
       - name: Log in to Docker Hub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
-
       - name: Build Docker image
         run: docker build -t ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} --platform linux/amd64 -f docker/prod/Dockerfile .
-
       - name: Push Docker image to Docker Hub
         run: docker push ${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
